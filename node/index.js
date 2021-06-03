@@ -3,14 +3,17 @@ const mysql = require('mysql')
 
 
 const config = {
-  host: 'db-mysql',
+  host: 'challenge-db',
   user: 'root',
   password: 'xupacabra',
   database: 'nodedb'
 };
 const connection = mysql.createConnection(config)
 
-const sql = `INSERT INTO people(name) VALUES('xupa-cabra')`;
+let sql = `CREATE TABLE people (name VARCHAR(255))`;
+connection.query(sql);
+
+sql = `INSERT INTO people(name) VALUES ('vai-que-cola')`;
 connection.query(sql);
 connection.end();
 
