@@ -5,11 +5,11 @@ services:
     build: 
       context: node
       #dockerfile: Dockerfile
-    container_name: app-node
-    hostname: app-node
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    container_name: challenge-app
+    hostname: challenge-app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
     volumes: 
-      - ./node:/usr/src/app
+      - ./node:/home/node/app
     tty: true
     ports: 
       - "3000:3000"
@@ -21,7 +21,7 @@ services:
   db:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
-    container_name: db-mysql
+    container_name: challenge-db
     restart: unless-stopped
     tty: true
     environment: 
@@ -36,7 +36,7 @@ services:
     build: 
       context: nginx
       #dockerfile: Dockerfile
-    container_name: webserver-nginx
+    container_name: challenge-webserver
     restart: unless-stopped
     tty: true
     ports:
@@ -51,3 +51,4 @@ services:
 networks: 
   challenge-network:
     driver: bridge 
+ 
