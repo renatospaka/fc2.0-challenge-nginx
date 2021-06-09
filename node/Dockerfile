@@ -1,5 +1,5 @@
-FROM node:10-slim
-#FROM node:15
+#FROM node:10-slim
+FROM node:15-slim
 
 #USER node
 
